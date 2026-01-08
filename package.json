@@ -1,0 +1,27 @@
+{
+  "name": "recipe-app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "db:init": "wrangler d1 execute recipe-db --local --file=./server/schema.sql",
+    "db:init:prod": "wrangler d1 execute recipe-db --file=./server/schema.sql",
+    "db:backup": "wrangler d1 export recipe-db --output=backup.sql",
+    "deploy": "npm run build && wrangler pages deploy .output/public"
+  },
+  "dependencies": {
+    "nuxt": "^4.2.2",
+    "vue": "^3.5.26",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260108.0",
+    "@nuxtjs/pwa": "^3.3.5",
+    "vite-plugin-pwa": "^0.21.2",
+    "wrangler": "^4.22.0"
+  }
+}
